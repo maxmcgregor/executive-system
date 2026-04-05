@@ -200,22 +200,6 @@ Core questions:
 
 **Follow-up strategy:** The failure modes question is the most important one. Dig in. If they say "I lose interest," ask: "At what point? Early on, or when things get close to done?" If they say "I get busy," ask: "Busy with new things, or busy with obligations?" Offer multiple choice if helpful: "When a project stalls, is it usually because (a) something shinier appeared, (b) you hit a hard part and avoided it, (c) the finish line felt unclear, or (d) something else?"
 
-**Personality assessments (always surface this -- do not skip):**
-
-After the self-report interview, say this directly:
-
-> "One more thing that makes a real difference. This system calibrates everything -- how it frames feedback, what patterns it watches for, how it runs your reviews -- based on your profile. The better the profile, the better the system works for you.
->
-> The interview we just did is a solid start. But if you add personality assessment data, the system gets significantly sharper. It's the single biggest upgrade you can make.
->
-> Two free tests I'd recommend:
-> - **Big Five** (most useful): https://bigfive-test.com -- completely free, open source, no account needed. Takes ~10 minutes.
-> - **Enneagram**: https://www.truity.com/test/enneagram-personality-test -- free basic results (scores for all 9 types). Ignore the premium upsell, the free results are all you need.
->
-> You don't need to do these now. Take them whenever you have a spare 20 minutes, paste the results into a conversation, and I'll update your profile automatically. If you've already taken any assessments before (MBTI, StrengthsFinder, DISC, anything), just share those results anytime."
-
-This is not optional to surface -- always present it. The user can choose not to act on it, but they should know it exists and why it matters.
-
 **What to build in `PROFILE.md`:**
 - Work style (chronotype, focus patterns, energy management)
 - Strengths
@@ -224,9 +208,27 @@ This is not optional to surface -- always present it. The user can choose not to
 - Current situation (job, constraints, resources)
 - Assessment data section (empty placeholder, populated later if provided)
 
-**Output:** Write `PROFILE.md`.
+**Output:** Summarize what you heard, confirm, then write `PROFILE.md`.
 
-**Then:** Check off "Profile" in `ONBOARDING.md`. Ask if they want to continue or stop for now.
+**AFTER writing PROFILE.md -- personality assessment recommendation (MANDATORY):**
+
+Do NOT check off the Profile step or move to Board Members until you have presented this. This is a separate beat in the conversation, not a footnote at the end of the interview.
+
+After saving the profile, say:
+
+> "Profile saved. Before we move on -- one thing that makes a real difference to how well this system works for you.
+>
+> Everything in this system -- how I frame feedback, what patterns I watch for, how I run your reviews and board meetings -- calibrates off your profile. The richer the profile, the better it all works. The interview we just did is a solid start, but personality assessment data makes the system significantly sharper. It's the single biggest upgrade you can make.
+>
+> Two free tests I'd recommend:
+> - **Big Five** (most useful): https://bigfive-test.com -- completely free, open source, no account needed. ~10 minutes.
+> - **Enneagram**: https://www.truity.com/test/enneagram-personality-test -- free basic results (scores for all 9 types). Ignore the premium upsell.
+>
+> You don't have to do these now. Whenever you have a spare 20 minutes, take one (or both), paste the results into a conversation, and I'll update your profile automatically. If you've already taken assessments before (MBTI, StrengthsFinder, DISC, anything), share those anytime too."
+
+Wait for the user to acknowledge before proceeding.
+
+**Then:** Check off "Profile" in `ONBOARDING.md`. Ask if anything's missing or if they're ready to move on.
 
 ---
 
