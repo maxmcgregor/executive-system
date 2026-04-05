@@ -14,15 +14,25 @@ It keeps you honest about whether your daily work is moving you toward your bigg
 
 ## Requirements
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI, desktop app, or IDE extension)
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (CLI, desktop app, or IDE extension). If you don't have it yet, follow the install instructions at that link -- it takes a few minutes.
 
 ## Setup
 
-1. Clone this repo
-2. Open it in Claude Code
-3. Say hello
+1. **Download this repo.** Click the green **Code** button near the top right of this page. Copy the HTTPS URL. Open your terminal and run:
+   ```
+   git clone https://github.com/maxmcgregor/executive-system.git
+   ```
+   (If you don't have git installed, Claude Code can help you set it up -- just ask.)
 
-That's it. Claude walks you through the rest.
+2. **Open it in Claude Code.** In your terminal:
+   ```
+   cd executive-system
+   claude
+   ```
+
+3. **Say hello.** Type anything -- "hello", "start", whatever. Claude takes it from there.
+
+That's it. If you get stuck at any point, just tell Claude what's happening and it'll help you through it.
 
 ## What Happens Next
 
