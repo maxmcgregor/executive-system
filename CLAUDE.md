@@ -96,16 +96,18 @@ After onboarding completes (all items checked), `/start` works as a regular slas
 
 ## Bootstrap / First Run
 
-When a user first opens the repo and sends any message, Claude performs these steps silently before responding:
+When a user first opens the repo and sends any message, Claude performs setup. Steps 1-3 are silent. Steps 4-5 are user-facing.
 
-### 1. Skills Installation
+### 1. Skills Installation (silent)
 Copy skill directories from this repo's `skills/` to `~/.claude/skills/`. If `~/.claude/skills/` already exists, copy individual skill directories into it rather than replacing the whole folder.
 
-If the copy fails, tell the user:
+If the copy fails, surface the fallback command after the greeting:
 > I couldn't install the skills automatically. Run this command and we'll continue:
-> `cp -r skills/* ~/.claude/skills/`
+> `mkdir -p ~/.claude/skills && cp -r skills/* ~/.claude/skills/`
 
-### 2. Directory Verification
+After the user runs it, verify by checking that `~/.claude/skills/start/SKILL.md` exists.
+
+### 2. Directory Verification (silent)
 Confirm all directories in the repo structure exist. Create any that are missing:
 - `goals/`, `indicators/`, `experiments/`, `plans/`
 - `backlog/`
@@ -114,16 +116,19 @@ Confirm all directories in the repo structure exist. Create any that are missing
 - `logs/build/`, `logs/journal/`
 - `research/`, `projects/`
 
-### 3. Git
+### 3. Git (silent)
 If git is already initialized, leave it alone. If not, do nothing -- git is not required. If the user later enables auto-commit via `config.md`, Claude initializes git at that point.
 
-### 4. Auto-Commit Preference
-Ask: "Want me to automatically save a snapshot of your progress at the end of each session? (This uses git -- you can change this anytime.)"
+### 4. Greet the User
+Explain what the system is and what they're about to do. This is the first thing the user sees. If skills installation failed, surface the fallback command here.
+
+### 5. Auto-Commit Preference
+After the greeting, ask: "Want me to automatically save a snapshot of your progress at the end of each session? (This uses git -- you can change this anytime.)"
 
 Store the answer in `config.md`. Default: off.
 
 ### Failure Handling
-- **Skills copy fails:** Surface one fallback command (shown above). Continue with onboarding.
+- **Skills copy fails:** Surface the fallback command (with `mkdir -p`) after the greeting. Verify installation. If still failing, continue -- skills exist in the repo's `skills/` directory and Claude can read them directly.
 - **Permission issues:** Explain in plain language, offer the fix.
 - **No git:** System works fine without it. Never block on git.
 
@@ -285,63 +290,87 @@ These schemas define the format Claude uses when creating files. Follow them exa
 ### logs/build/*.md
 
 ```markdown
-# Build Log: YYYY-MM-DD
+# YYYY-MM-DD
 
-## What I worked on
 - [Task or activity]
-
-## What I shipped / completed
-- [Output or deliverable]
-
-## Blockers or open questions
-- [Issue, if any]
-
-## Notes
-[Anything else worth capturing]
+- [Task or activity]
 ```
+
+Concise bullet list. No sections, no narrative. If appending to an existing file, add bullets under existing ones.
 
 ### reviews/weekly/*.md
 
 ```markdown
-# Weekly Review: YYYY-MM-DD
+# Weekly Review: YYYY-WXX
 
-## Goals Progress
-[Status of each active goal against its deliverables]
+## Week of [date range]
 
-## Build Log Summary
-[What got done this week, based on daily logs]
+### What Got Done
+[Bullet summary of build log entries this week]
 
-## Consistency
-[Days logged, pattern observations]
+### Goals Progress
+[For each active goal: status, movement this week, pace assessment]
 
-## Flags
-[Drift, stalled work, missed commitments -- factual only]
+### Experiments Status
+[For each active experiment: activity this week, runway remaining]
 
-## User Notes
+### Plan Progress
+[For each active plan: checkboxes completed this week, what's next, stalled phases]
+
+### Flags
+[Behavioral drift, stalled projects, consistency gaps -- factual only]
+
+### Honest Take
+[2-3 sentences: On track? What needs attention?]
+
+### User Notes
 [Added by the user during the review conversation]
 ```
 
 ### reviews/board/*.md
 
 ```markdown
-# Board Meeting: YYYY-MM-DD
+# Board Meeting: [Month Year]
 
-## Quarter Progress
-[Goal status, deliverable progress]
+**Date:** YYYY-MM-DD
+**Type:** Monthly / Impromptu (reason)
+**Previous meeting:** YYYY-MM-DD (or "First meeting")
 
-## Experiment Review
-[Status of each active experiment]
+---
 
-## Indicator Check
-[Current indicator values and trends]
+## Previous Meeting Follow-Up
+[Each prior commitment: what was decided, what happened]
+
+## Goal Progress
+[Each goal: committed vs achieved, status, blockers]
+
+## Experiment Assessment
+[Each experiment: status, indicators, recommendation, decision]
+
+## Pattern Review
+[Consistency data, themes from journals/logs, behavioral observations]
 
 ## Board Perspectives
-[Key points raised by each board lens]
+[Key insights from each lens/member]
 
-## Decisions
-[What was decided, changed, or committed to]
+## Synthesis
+[Common themes across board perspectives, key tensions]
 
-## Action Items
-- [ ] [Action 1]
-- [ ] [Action 2]
+## Idea Triage
+[Each idea reviewed: promote/park/kill with reasoning]
+
+## Direction
+[Agreed strategic focus for the coming month/quarter]
+
+## Commitments
+1. [Commitment 1]
+2. [Commitment 2]
+
+## Decisions Made
+- [Decision 1]
+- [Decision 2]
+
+## Open Items for Next Meeting
+- [Item 1]
+- [Item 2]
 ```

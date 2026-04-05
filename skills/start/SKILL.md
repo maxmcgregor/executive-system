@@ -28,18 +28,20 @@ If they stop, the next `/start` picks up at the next unchecked item. No guilt, n
 
 ### Step 0: Bootstrap (Setup)
 
-This step is invisible to the user. Before responding to ANY message, if the "Setup" item in `ONBOARDING.md` is unchecked, perform these actions silently:
+If the "Setup" item in `ONBOARDING.md` is unchecked, perform these actions before proceeding. Steps 1-3 are silent (no user-facing output). Steps 4-6 are user-facing.
 
-#### 1. Skills Installation
+#### 1. Skills Installation (silent)
 
 Copy skill directories from this repo's `skills/` to `~/.claude/skills/`. If `~/.claude/skills/` already exists, copy individual skill directories into it -- do not replace the whole folder.
 
-If the copy fails, surface one fallback command and continue:
+If the copy fails, surface a fallback command after the greeting (Step 4):
 
 > I couldn't install the skills automatically. Run this command and we'll continue:
-> `cp -r skills/* ~/.claude/skills/`
+> `mkdir -p ~/.claude/skills && cp -r skills/* ~/.claude/skills/`
 
-#### 2. Directory Verification
+After the user runs it, verify the skills installed by checking that `~/.claude/skills/start/SKILL.md` exists. If it doesn't, ask the user to try again or troubleshoot.
+
+#### 2. Directory Verification (silent)
 
 Confirm all repo directories exist. Create any that are missing:
 - `goals/`
@@ -55,15 +57,25 @@ Confirm all repo directories exist. Create any that are missing:
 - `research/`
 - `projects/`
 
-#### 3. Git
+#### 3. Git (silent)
 
 If git is already initialized, leave it alone. If not, do nothing. Git is not required. If the user later enables auto-commit, Claude initializes git at that point.
 
-#### 4. Auto-Commit Preference
+#### 4. Greet the User
 
-Ask the user:
+This is the first thing the user sees. Explain what the system is and what they're about to do. Keep it welcoming but concise:
 
-> "Want me to automatically save a snapshot of your progress at the end of each session? (This uses git -- you can change this anytime.)"
+> This is your executive system -- a structured way to stay aligned between what you're building toward and what you do each day. It handles goal-setting, weekly accountability, and monthly strategic reviews.
+>
+> We'll set up your system through a conversation. There are 6 steps after this setup -- Vision, Values, Profile, Board, Goals, and a first Board Meeting. Each takes 5-15 minutes. You can stop after any step and pick up next time.
+
+If skills installation failed in Step 1, surface the fallback command here, after the greeting.
+
+#### 5. Auto-Commit Preference
+
+After the greeting, ask:
+
+> "One quick preference before we start: want me to automatically save a snapshot of your progress at the end of each session? (This uses git -- you can change this anytime.)"
 
 Store the answer in `config.md`:
 - Yes: `Enabled: yes`
@@ -71,25 +83,13 @@ Store the answer in `config.md`:
 
 Default is no.
 
-#### 5. Greet the User
+#### 6. Check Off and Continue
 
-After the silent setup steps, greet the user with a brief explanation of what this system is and what they're about to do. Keep it welcoming but concise. Something like:
-
-> This is your executive system -- a structured way to stay aligned between what you're building toward and what you do each day. It handles goal-setting, weekly accountability, and monthly strategic reviews.
->
-> We'll set up your system through a conversation. There are 6 steps after this setup -- Vision, Values, Profile, Board, Goals, and a first Board Meeting. Each takes 5-15 minutes. You can stop after any step and pick up next time.
-
-#### 6. Check Off Setup
-
-Change the "Setup" line in `ONBOARDING.md` from `- [ ]` to `- [x]`.
-
-#### 7. Continue Prompt
-
-Ask if the user wants to continue to Step 1.
+Change the "Setup" line in `ONBOARDING.md` from `- [ ]` to `- [x]`. Ask if the user wants to continue to Step 1.
 
 #### Failure Handling
 
-- **Skills copy fails:** Surface the fallback command shown above. Continue with onboarding.
+- **Skills copy fails:** Surface the fallback command (shown above) after the greeting. Verify installation before proceeding. If still failing, continue with onboarding -- the skills exist in the repo's `skills/` directory and Claude can read them directly; slash commands just won't work until installation succeeds.
 - **Permission issues:** Explain in plain language, offer the fix.
 - **No git:** System works fine without it. Never block on git.
 
