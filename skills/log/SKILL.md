@@ -32,12 +32,11 @@ A ritual for when you're done with a work session. Captures what you did, and pi
 
 **Consolidate related work into single bullets.** If multiple steps were part of the same task, log it as one bullet, not four. Use parentheticals for notable details. The build log should read as a list of *outcomes*, not a play-by-play of steps taken to get there.
 
-Example input: "I built the email system today, migrated 35 subscribers from Substack. Feeling pumped about how much I got done."
+Example input: "I set up the landing page today, added an email signup form and connected it to the mailing list. Feeling good about how much I got done."
 
 Build log output:
 ```
-- Built email subscription system (subscribe/unsubscribe/publish)
-- Migrated 35 subscribers from Substack
+- Built landing page with email signup (form, confirmation, mailing list integration)
 ```
 
 ### Reflective Content (-> Journal)

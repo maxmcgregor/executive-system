@@ -314,7 +314,7 @@ Run an abbreviated board meeting. This is the first one, so skip sections that r
 4. Ask the user to commit to the monthly behaviors they'll maintain to hit their goals.
 
 **Output:**
-- Write `reviews/board/YYYY-MM.md` using the board meeting schema from `CLAUDE.md`
+- Write `reviews/board/YYYY-MM-DD.md` using the board meeting schema from `CLAUDE.md`
 - Check off "First Board Meeting" in `ONBOARDING.md`
 
 At this point, all items in `ONBOARDING.md` should be checked. Congratulate the user briefly and let them know:

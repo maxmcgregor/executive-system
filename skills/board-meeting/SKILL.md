@@ -140,7 +140,7 @@ This is a conversation. The user pushes back, asks questions, adjusts. The board
 ### Phase 8: Capture Decisions
 
 Once the user and board align:
-- Save the full board meeting to `reviews/board/YYYY-MM.md`
+- Save the full board meeting to `reviews/board/YYYY-MM-DD.md`
 - Update experiment files with any status changes
 - Update `indicators/YYYY-QX.md` if changed
 - Update backlog files based on triage decisions:

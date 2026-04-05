@@ -96,41 +96,14 @@ After onboarding completes (all items checked), `/start` works as a regular slas
 
 ## Bootstrap / First Run
 
-When a user first opens the repo and sends any message, Claude performs setup. Steps 1-3 are silent. Steps 4-5 are user-facing.
+When a user first opens the repo and sends any message, the `/start` skill handles everything. Its Step 0 (Setup) silently installs skills, verifies directories, checks git, then greets the user and asks their auto-commit preference.
 
-### 1. Skills Installation (silent)
-Copy skill directories from this repo's `skills/` to `~/.claude/skills/`. If `~/.claude/skills/` already exists, copy individual skill directories into it rather than replacing the whole folder.
+The full bootstrap logic lives in `skills/start/SKILL.md` -- that is the single source of truth. Do not duplicate it here.
 
-If the copy fails, surface the fallback command after the greeting:
-> I couldn't install the skills automatically. Run this command and we'll continue:
-> `mkdir -p ~/.claude/skills && cp -r skills/* ~/.claude/skills/`
-
-After the user runs it, verify by checking that `~/.claude/skills/start/SKILL.md` exists.
-
-### 2. Directory Verification (silent)
-Confirm all directories in the repo structure exist. Create any that are missing:
-- `goals/`, `indicators/`, `experiments/`, `plans/`
-- `backlog/`
-- `board/`
-- `reviews/weekly/`, `reviews/board/`
-- `logs/build/`, `logs/journal/`
-- `research/`, `projects/`
-
-### 3. Git (silent)
-If git is already initialized, leave it alone. If not, do nothing -- git is not required. If the user later enables auto-commit via `config.md`, Claude initializes git at that point.
-
-### 4. Greet the User
-Explain what the system is and what they're about to do. This is the first thing the user sees. If skills installation failed, surface the fallback command here.
-
-### 5. Auto-Commit Preference
-After the greeting, ask: "Want me to automatically save a snapshot of your progress at the end of each session? (This uses git -- you can change this anytime.)"
-
-Store the answer in `config.md`. Default: off.
-
-### Failure Handling
-- **Skills copy fails:** Surface the fallback command (with `mkdir -p`) after the greeting. Verify installation. If still failing, continue -- skills exist in the repo's `skills/` directory and Claude can read them directly.
-- **Permission issues:** Explain in plain language, offer the fix.
-- **No git:** System works fine without it. Never block on git.
+**Key points for reference:**
+- Skills are copied from this repo's `skills/` to `~/.claude/skills/`. Fallback command if copy fails: `mkdir -p ~/.claude/skills && cp -r skills/* ~/.claude/skills/`
+- Git is optional. System works without it.
+- Auto-commit preference is stored in `config.md`. Default: off.
 
 ---
 
@@ -222,7 +195,7 @@ These schemas define the format Claude uses when creating files. Follow them exa
 
 **Status:** Active / Paused / Closed
 **Started:** YYYY-MM-DD
-**Minimum Runway:** [Duration or date]
+**Minimum Runway:** [Duration or date -- do not evaluate before this]
 
 ---
 
@@ -373,4 +346,56 @@ Concise bullet list. No sections, no narrative. If appending to an existing file
 ## Open Items for Next Meeting
 - [Item 1]
 - [Item 2]
+```
+
+### config.md
+
+```markdown
+# System Configuration
+
+## Auto-Commit
+Enabled: no
+```
+
+`/log` reads this file to determine whether to commit after saving. `/start` Step 0 sets the initial value during onboarding. User can change anytime by asking Claude.
+
+### backlog/IDEAS.md
+
+```markdown
+# Ideas
+
+Raw captures. No evaluation. Board triages monthly.
+
+---
+
+- [YYYY-MM-DD] Idea description
+```
+
+### backlog/REVIEWED.md
+
+```markdown
+# Reviewed Ideas
+
+Parked with trigger conditions. Board re-evaluates periodically.
+
+---
+
+### [Idea Name]
+- **Parked:** YYYY-MM-DD
+- **Trigger:** [When to reconsider]
+```
+
+### backlog/ARCHIVE.md
+
+```markdown
+# Archive
+
+Promoted, completed, or killed ideas. Historical record.
+
+---
+
+### [Idea Name]
+- **Status:** Promoted / Killed / Completed
+- **Date:** YYYY-MM-DD
+- **Reason:** [Why]
 ```
