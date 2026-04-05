@@ -18,11 +18,10 @@ It keeps you honest about whether your daily work is moving you toward your bigg
 
 ## Setup
 
-1. **Download this repo.** Click the green **Code** button near the top right of this page. Copy the HTTPS URL. Open your terminal and run:
+1. **Download this repo.** Open your terminal and run:
    ```
    git clone https://github.com/maxmcgregor/executive-system.git
    ```
-   (If you don't have git installed, Claude Code can help you set it up -- just ask.)
 
 2. **Open it in Claude Code.** In your terminal:
    ```
