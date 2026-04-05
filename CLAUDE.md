@@ -19,7 +19,7 @@ Each layer constrains the layer below it. Values filter goals. Goals define whic
 
 ## How Goals Work
 
-- **Controllable and measurable.** "Ship X" not "get Y users." Goals are things within the user's control.
+- **Controllable and measurable.** "Complete X" not "get Y customers." Goals are things within the user's control.
 - **Quarterly cadence.** Set at board meetings, tracked in weekly reviews. Board meets monthly (first Friday) to review progress and adjust.
 - **2-3 per quarter.** Deliberately achievable. Better to exceed easy targets and raise the bar than fail ambitious ones.
 - **Stored in:** `goals/YYYY-QX.md`
@@ -148,10 +148,11 @@ The full bootstrap logic lives in `skills/start/SKILL.md` -- that is the single 
 
 1. Start work with `/start`
 2. End with `/log`
-3. Do `/weekly-review` once a week (Fridays)
-4. Do `/board-meeting` once a month (first Friday)
+3. Do `/journal` 1-2x per week -- surfaces what's underneath the tasks and gives the system unfiltered signal
+4. Do `/weekly-review` once a week (Fridays)
+5. Do `/board-meeting` once a month (first Friday)
 
-Everything else is optional. The system works with just these four touchpoints.
+`/capture` saves ideas to the backlog anytime. Everything else is optional.
 
 ---
 

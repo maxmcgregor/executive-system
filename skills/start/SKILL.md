@@ -18,9 +18,21 @@ This skill has two modes:
 
 Onboarding has 7 phases: Setup (Step 0, invisible to the user) plus Steps 1-6. Each step corresponds to a checkbox in `ONBOARDING.md`. When the user runs `/start` (or sends any message while unchecked items remain), find the first unchecked item and execute that step.
 
-After completing each step:
+### Discovery Approach (applies to ALL onboarding steps)
+
+Do not take the user's first answer and immediately write the file. Run discovery first:
+
+1. **Ask the opening question** for the step.
+2. **Follow up.** Ask 2-3 clarifying or deepening questions based on what they said. Dig into specifics. If they gave a short answer, ask targeted follow-ups. If they gave a long answer, reflect back what you heard and ask what's missing.
+3. **Offer multiple choice when helpful.** If the user seems stuck or gives vague answers, offer options to react to (e.g., "Which of these resonates most: A, B, or C?"). This speeds things up without sacrificing depth.
+4. **Confirm before writing.** Before generating the file, summarize what you heard back to them: "Here's what I'm hearing -- [summary]. Anything to add or change?" Only write the file after they confirm.
+5. **Check they're done.** After writing, explicitly ask: "Anything else to add to this section, or are we good to move on?"
+
+The goal is a robust, accurate document -- not speed. Two extra questions now save a rewrite later.
+
+### After completing each step:
 1. Check it off in `ONBOARDING.md` (change `- [ ]` to `- [x]`)
-2. Ask: "Want to continue to the next step, or stop for now?"
+2. Ask: "Anything else for this section, or ready for the next step?"
 
 If they stop, the next `/start` picks up at the next unchecked item. No guilt, no pressure.
 
@@ -113,17 +125,24 @@ Open with:
 
 > "Describe the life you're building toward. Not a business plan -- the actual life. What does a regular day look like when everything is working the way you want?"
 
-If the user writes a lot, ask sharpening follow-ups to clarify specifics. If they're brief, break it down with targeted questions:
+**Follow-up strategy:**
 
+If the user writes a lot, ask sharpening follow-ups: "You mentioned X -- say more about that." "What does the financial side look like?" "What's the timeline in your head?"
+
+If they're brief, break it down with targeted questions:
 - "What does your morning look like?"
 - "Are you working for yourself or someone else?"
 - "Where are you?"
 - "What's the financial picture?"
 - "Who's around?"
 
-**Output:** Write `VISION.md` with the extracted content, structured clearly. Use natural sections that fit what the user described -- not a rigid template.
+If they seem stuck, offer multiple choice: "Is this more about freedom and independence, building something meaningful, financial security, or something else?"
 
-**Then:** Check off "Vision" in `ONBOARDING.md`. Ask if they want to continue or stop for now.
+Ask at least 2-3 follow-up questions before writing. Don't rush to the file.
+
+**Output:** Summarize what you heard, confirm with the user, then write `VISION.md`. Use natural sections that fit what they described -- not a rigid template.
+
+**Then:** Check off "Vision" in `ONBOARDING.md`. Ask if anything's missing or if they're ready to move on.
 
 ---
 
@@ -141,17 +160,25 @@ If the user writes a lot, ask sharpening follow-ups to clarify specifics. If the
 
 > "What matters most to you? Think about the times you've felt most aligned -- what was present? And the times you've felt most off -- what was missing?"
 
-If the user struggles with the open-ended question, offer categories:
+If the user struggles with the open-ended question, offer categories to react to:
 
-> "Relationships, health, freedom, achievement, creativity, security, adventure, impact -- which of these pull you? Which don't matter much?"
+> "Here are some common values people orient around -- which pull you, and which don't matter much? Relationships, health, freedom, achievement, creativity, security, adventure, impact, autonomy, mastery, service, growth."
 
-Then ask about operating principles:
+**Follow-up strategy:**
 
-> "How do you want to operate? What rules do you hold yourself to?"
+For each value they name, dig in: "When you say freedom, what does that mean specifically for you? Freedom from what?" "You mentioned craft -- what does that look like when it's present vs. absent?"
 
-**Output:** Write `VALUES.md` with values and principles clearly separated.
+After values, move to principles:
 
-**Then:** Check off "Values & Principles" in `ONBOARDING.md`. Ask if they want to continue or stop for now.
+> "How do you want to operate? What rules do you hold yourself to? Think about the times things went well -- what habits or disciplines were in play?"
+
+If they're brief on principles, offer examples to react to: "Some people operate by 'ship fast, fix later.' Others by 'measure twice, cut once.' Some prioritize consistency, others intensity. What's your style?"
+
+Ask at least 2-3 follow-up questions across values and principles before writing.
+
+**Output:** Summarize what you heard, confirm, then write `VALUES.md` with values and principles clearly separated.
+
+**Then:** Check off "Values & Principles" in `ONBOARDING.md`. Ask if anything's missing or if they're ready to move on.
 
 ---
 
@@ -161,14 +188,17 @@ Then ask about operating principles:
 
 > The more this system understands about how you're wired, the better it works with you instead of against you. This helps calibrate how goals are framed, how reviews are delivered, and what patterns to watch for. Think of it like giving the system your user manual.
 
-**Primary method: Structured self-report interview.** Ask these questions (adapt based on the conversation flow -- you don't need to ask every single one if earlier answers already covered it):
+**Primary method: Structured self-report interview.** Ask these questions one or two at a time (not all at once). Follow up on interesting answers before moving to the next question. Adapt based on conversation flow -- skip questions already covered.
 
+Core questions:
 - "How do you work best? Morning or night? Long sessions or short bursts?"
 - "What drains your energy? What charges it?"
 - "When you've failed at something in the past, what was usually the reason? Lost interest? Got busy? Didn't know how to finish?"
 - "How do you like to receive feedback? Direct and blunt, or softer?"
 - "What are you naturally good at? What do people come to you for?"
 - "What's your current situation? Job, time constraints, resources?"
+
+**Follow-up strategy:** The failure modes question is the most important one. Dig in. If they say "I lose interest," ask: "At what point? Early on, or when things get close to done?" If they say "I get busy," ask: "Busy with new things, or busy with obligations?" Offer multiple choice if helpful: "When a project stalls, is it usually because (a) something shinier appeared, (b) you hit a hard part and avoided it, (c) the finish line felt unclear, or (d) something else?"
 
 **Optional enrichment (offer after the interview, never require):**
 
@@ -220,6 +250,8 @@ Tell the user: "You don't need to do these now -- you can take them anytime and 
 If the user names people:
 - For public figures, use training knowledge to build the board member file.
 - For personal contacts or obscure figures, ask: "Tell me about how they think. What would they push back on? What would they encourage?"
+
+**After each person or batch of people, explicitly ask:** "Anyone else you want on the board, or are we good with these?" Do not assume they're done after the first answer. Keep the door open until they confirm.
 
 Constraints:
 - Minimum: 4 board members
@@ -317,9 +349,17 @@ Run an abbreviated board meeting. This is the first one, so skip sections that r
 - Write `reviews/board/YYYY-MM-DD.md` using the board meeting schema from `CLAUDE.md`
 - Check off "First Board Meeting" in `ONBOARDING.md`
 
-At this point, all items in `ONBOARDING.md` should be checked. Congratulate the user briefly and let them know:
+At this point, all items in `ONBOARDING.md` should be checked. Congratulate the user briefly and present the system:
 
-> Your system is set up. From now on, `/start` will orient you on what to work on each day. The minimum habit loop is: `/start` to begin, `/log` to end, `/weekly-review` on Fridays, `/board-meeting` on the first Friday of each month.
+> Your system is set up. Here's the habit loop:
+>
+> 1. **`/start`** -- begin each work session (2-3 min)
+> 2. **`/log`** -- end each work session (1-2 min)
+> 3. **`/journal`** -- explore what you're thinking (aim for 1-2x per week -- this gives the system unfiltered insight into how you're actually feeling about the work)
+> 4. **`/weekly-review`** -- Fridays (5-10 min)
+> 5. **`/board-meeting`** -- first Friday of each month (30-60 min)
+>
+> `/capture` saves ideas to the backlog anytime. Run `/how-to-use` for the full guide on why each piece matters.
 
 ---
 
@@ -373,6 +413,7 @@ The user picks what to work on. Confirm the session's focus. If the user brings 
 - **Shiny object detection:** If the user starts talking about a new project not in goals/experiments, don't just flag it -- diagnose it. Ask: "Is the current work feeling predictable, or are you seeing a genuine opportunity?" If stimulation-seeking, suggest reframing current work. If genuine opportunity, suggest `/capture` for board evaluation.
 - **Plan avoidance:** Active plan checkboxes not progressing in build logs.
 - **Plan phase readiness:** If a plan's current phase prerequisites are met, surface the next actions.
+- **Journal nudge:** If no journal entries exist in the past 7 days, suggest it once (not every session): "It's been a while since your last journal entry. If anything's brewing -- a frustration, a decision, an idea -- `/journal` is a good place to work through it."
 
 **Personality-aware framing:** Read `PROFILE.md` for chronotype, failure modes, and communication preferences. Adapt how you present options:
 - If the user works best in the morning, surface deep/creative work first

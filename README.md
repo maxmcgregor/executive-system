@@ -38,23 +38,17 @@ Then you run your first board meeting and you're operational.
 
 ## The Habit Loop
 
-Four commands. Everything else is optional.
+Five commands. `/capture` is the only optional one.
 
 | Command | When | Time |
 |---|---|---|
 | `/start` | Beginning of each work session | 2-3 min |
 | `/log` | End of each work session | 1-2 min |
+| `/journal` | 1-2x per week (when something's brewing) | 5-15 min |
 | `/weekly-review` | Fridays | 5-10 min |
 | `/board-meeting` | First Friday of each month | 30-60 min |
 
-Run `/how-to-use` for the full guide on why each piece matters.
-
-## Other Commands
-
-| Command | Purpose |
-|---|---|
-| `/journal` | On-demand reflective writing with probing questions |
-| `/capture` | Quick idea capture to the backlog (no evaluation, just save) |
+`/capture` saves ideas to the backlog anytime. Run `/how-to-use` for the full guide on why each piece matters.
 
 <details>
 <summary>File structure</summary>
