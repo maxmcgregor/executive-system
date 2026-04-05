@@ -162,6 +162,7 @@ Store the answer in `config.md`. Default: off.
 | `logs/journal/*.md` | Journal entries |
 | `research/` | Optional: reference material, saved articles, notes |
 | `projects/` | Optional: subdirectories for active projects |
+| `skills/` | Claude Code slash commands (/start, /log, /journal, /weekly-review, /board-meeting, /capture, /how-to-use) |
 
 ---
 
