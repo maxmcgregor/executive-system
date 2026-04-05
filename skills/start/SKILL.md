@@ -172,11 +172,13 @@ Then ask about operating principles:
 
 **Optional enrichment (offer after the interview, never require):**
 
-> "If you've taken personality assessments before -- Big Five, Enneagram, MBTI, StrengthsFinder, DISC, anything -- you can share those results anytime and I'll incorporate them into your profile. This is optional."
+> "One more thing -- if you've taken personality assessments before (Big Five, Enneagram, MBTI, StrengthsFinder, DISC, anything), share those results anytime and I'll incorporate them into your profile. Assessment data makes the system significantly better at calibrating reviews, detecting your specific failure patterns, and framing feedback in a way that lands for you. It's not required, but it's the single biggest upgrade you can make to how the system works with you."
 
-Recommended free tests (offer, never require):
-- Big Five / IPIP-50: https://bigfive-test.com
-- Enneagram: https://www.truity.com/test/enneagram-personality-test
+If the user is interested but hasn't taken any, offer these free options:
+- **Big Five / IPIP-50:** https://bigfive-test.com -- completely free, open source, no account needed. Takes ~10 minutes. This is the most useful one for calibrating the system.
+- **Enneagram:** https://www.truity.com/test/enneagram-personality-test -- free basic results (scores for all 9 types). There's an optional paid premium report, but the free results are all you need.
+
+Tell the user: "You don't need to do these now -- you can take them anytime and just paste the results into a conversation. I'll update your profile automatically."
 
 **What to build in `PROFILE.md`:**
 - Work style (chronotype, focus patterns, energy management)
