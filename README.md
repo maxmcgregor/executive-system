@@ -46,6 +46,8 @@ Claude detects that the system is new and starts an onboarding conversation. Ove
 
 Then you run your first board meeting and you're operational.
 
+**Tip:** During onboarding, the system will recommend free personality assessments ([Big Five](https://bigfive-test.com), [Enneagram](https://www.truity.com/test/enneagram-personality-test)). These are optional but make a real difference -- the better your profile, the better the system calibrates feedback, reviews, and pattern detection to how you're actually wired.
+
 ## The Habit Loop
 
 Five commands. `/capture` is the only optional one.

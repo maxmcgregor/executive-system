@@ -200,15 +200,21 @@ Core questions:
 
 **Follow-up strategy:** The failure modes question is the most important one. Dig in. If they say "I lose interest," ask: "At what point? Early on, or when things get close to done?" If they say "I get busy," ask: "Busy with new things, or busy with obligations?" Offer multiple choice if helpful: "When a project stalls, is it usually because (a) something shinier appeared, (b) you hit a hard part and avoided it, (c) the finish line felt unclear, or (d) something else?"
 
-**Optional enrichment (offer after the interview, never require):**
+**Personality assessments (always surface this -- do not skip):**
 
-> "One more thing -- if you've taken personality assessments before (Big Five, Enneagram, MBTI, StrengthsFinder, DISC, anything), share those results anytime and I'll incorporate them into your profile. Assessment data makes the system significantly better at calibrating reviews, detecting your specific failure patterns, and framing feedback in a way that lands for you. It's not required, but it's the single biggest upgrade you can make to how the system works with you."
+After the self-report interview, say this directly:
 
-If the user is interested but hasn't taken any, offer these free options:
-- **Big Five / IPIP-50:** https://bigfive-test.com -- completely free, open source, no account needed. Takes ~10 minutes. This is the most useful one for calibrating the system.
-- **Enneagram:** https://www.truity.com/test/enneagram-personality-test -- free basic results (scores for all 9 types). There's an optional paid premium report, but the free results are all you need.
+> "One more thing that makes a real difference. This system calibrates everything -- how it frames feedback, what patterns it watches for, how it runs your reviews -- based on your profile. The better the profile, the better the system works for you.
+>
+> The interview we just did is a solid start. But if you add personality assessment data, the system gets significantly sharper. It's the single biggest upgrade you can make.
+>
+> Two free tests I'd recommend:
+> - **Big Five** (most useful): https://bigfive-test.com -- completely free, open source, no account needed. Takes ~10 minutes.
+> - **Enneagram**: https://www.truity.com/test/enneagram-personality-test -- free basic results (scores for all 9 types). Ignore the premium upsell, the free results are all you need.
+>
+> You don't need to do these now. Take them whenever you have a spare 20 minutes, paste the results into a conversation, and I'll update your profile automatically. If you've already taken any assessments before (MBTI, StrengthsFinder, DISC, anything), just share those results anytime."
 
-Tell the user: "You don't need to do these now -- you can take them anytime and just paste the results into a conversation. I'll update your profile automatically."
+This is not optional to surface -- always present it. The user can choose not to act on it, but they should know it exists and why it matters.
 
 **What to build in `PROFILE.md`:**
 - Work style (chronotype, focus patterns, energy management)
