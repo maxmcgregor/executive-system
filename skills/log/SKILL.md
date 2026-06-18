@@ -153,6 +153,43 @@ After saving the build log, evaluate the session's work.
 
 ---
 
+## Custodianship Pass
+
+After the honest day check, run these three quick prompts. This is what turns sessions into a
+trustworthy state layer and compounding knowledge. Keep it light -- a minute, not a ceremony. If a
+prompt comes back empty, skip it; most sessions won't trigger all three.
+
+**Prompt 1: "Anything durable?"**
+Did this session surface a lesson worth keeping -- something that would help next time this kind of
+problem comes up? If so, save it where reusable notes live (a `research/` note, a personal
+`knowledge/` file if you keep one, etc.). If there's no natural home, tag it in the build log with
+`[lesson]` so it can be filed later. Most sessions produce nothing durable; that's fine.
+
+**Prompt 2: "State changes?"**
+Check whether the session changed anything in the state layer:
+- `state/dashboard.md` -- did priorities, open commitments, experiments, focus, or blockers change?
+- `state/projects.md` -- did any project's status, phase, next action, blocker, or last-touched change?
+- `state/direction.md` -- did any goal, experiment, decision, or open question change?
+
+Update the state files as a **current-truth projection -- overwrite, do not append:**
+
+- Replace each changed status / `Last touched` / `As of` line with what is true **now**.
+- Carry forward any **open** blocker, next-action, or unfinished thread.
+- Anything now resolved or historical **drops out** -- it is already in today's build log (written
+  above) and in git. **Never add a `Prior:` chain or a running narrative.**
+- Each state file keeps a single `_As of YYYY-MM-DD_` stamp.
+
+The build log is the event stream (append-only, written first). The state files are the projection
+(overwritten). Because the build log is written before state, the overwrite can only ever drop an
+*open* item by mistake -- never lose history. Writing history *into* the state files is the bug this
+rule exists to prevent.
+
+**Prompt 3: "Anything to park?"**
+- New idea that isn't part of current goals? -> Suggest `/capture` (goes to `backlog/IDEAS.md`).
+- A noticed pointer that's now stale in `context-map.yaml`? -> Note it for a quick fix.
+
+---
+
 ## Git Behavior
 
 Read `config.md` for auto-commit preference.
@@ -180,6 +217,8 @@ Accept / Edit / Skip
 Triage: Tasks -> build log, Reflective -> journal offer
     |
 Honest day check
+    |
+Custodianship pass (durable? state changes? park?)
     |
 Git commit (if auto-commit enabled)
     |
