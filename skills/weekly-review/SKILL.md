@@ -75,6 +75,12 @@ A Friday ritual. Generates an honest assessment of the week, then gives the user
 
 Include both the generated assessment and user's commentary in the saved file.
 
+**If the review changes anything in the state layer** (a priority, blocker, goal status, or
+experiment status on `state/dashboard.md` or `state/direction.md`), follow `/log`'s current-truth
+rule: **overwrite to what is true now, carry forward open items, never append history or a `Prior:`
+chain.** The weekly review file itself is the historical record; the state files hold only current
+truth.
+
 ## Empty-State Branches
 
 - **No goals:** Summarize build logs only. Ask: "Want to set goals now or defer to your first board meeting?"

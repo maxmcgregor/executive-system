@@ -381,24 +381,43 @@ At this point, all items in `ONBOARDING.md` should be checked. Congratulate the 
 
 Used when all items in `ONBOARDING.md` are checked. This is the normal daily flow.
 
-### 1. Read Current State (silently, before responding)
+### 1. Read the State Layer First (silently, before responding)
 
-- `goals/` -- find the current quarter's goals file
-- `experiments/` -- active experiments and their status
-- `plans/` -- active plans with checkbox progress (look for unchecked items and stalled phases)
-- `reviews/board/` -- most recent board meeting (read the **Commitments** and **Direction** sections). These define the priorities for the current month.
-- `logs/build/` -- last 3-5 build logs (most recent)
-- `reviews/weekly/` -- most recent weekly review. **This is the freshest status source.** For each item in the board's commitments, check the weekly review for current status. If the weekly review marks something complete, treat it as complete regardless of the board file's wording. The board defines priorities; the weekly review tracks reality.
-- Current date -- check if weekly review is due (Fridays), board meeting due (first Friday of month)
-- `PROFILE.md` -- read for chronotype, failure modes, communication preferences to calibrate the session
+The state layer is the default source of truth for current status. It is maintained by `/log`,
+`/weekly-review`, and `/board-meeting` as a **current-truth projection** (overwritten, never appended)
+-- so it's small and trustworthy. **Read it at face value; do not reconstruct state from scattered
+files.**
+
+- `state/dashboard.md` -- quarter + goals, open commitments, active experiments, current focus, blockers
+- `state/projects.md` -- per-project status, phase, next action, blocker, last-touched
+- `state/direction.md` -- goal/experiment status, live decisions, open strategic questions
+
+Then read `PROFILE.md` for chronotype, failure modes, and communication preferences to calibrate the
+session, and check the current date for due reviews (see Conditional Reads below).
+
+**Do NOT read 3-5 build logs every session.** The state files are current truth -- trust them. Read a
+recent build log only when a specific check needs an event from the last few days (e.g. "was anything
+worked on yesterday").
+
+**If the state files are still empty scaffolding** (a brand-new system, or `/log` hasn't run since
+goals were set), fall back for this session to reading `goals/`, the most recent `reviews/board/`
+(Commitments + Direction), the most recent `reviews/weekly/`, and the last 1-2 build logs -- then the
+next `/log` will populate the state layer.
+
+### Conditional Reads (only when the date or dashboard flags them)
+
+- **Weekly review due?** If today is Friday (or past Friday with no review this week), read the most recent weekly review from `reviews/weekly/`.
+- **Board meeting due?** If today is the first Friday of the month (or past it with no board meeting logged this month in `reviews/board/`), flag it.
+- **Active plan?** When today's focus maps to an active plan, the context-map routing step (Step 4) loads it.
 
 ### 2. Present the Landscape
 
-- Active goals and their current status (how far along, what's next)
-- Any experiments approaching evaluation dates
-- What was worked on recently (from build logs)
-- Any flags from the last weekly review
-- Open loops or stalled items
+Sourced from the state files, not reconstructed:
+
+- Active goals and their current status (from `state/dashboard.md`)
+- Any experiments approaching evaluation dates (from `state/dashboard.md` / `state/direction.md`)
+- Current focus and recent work (from `state/dashboard.md` "this stretch" + `state/projects.md` phases)
+- Open loops, blockers, or stalled items (from `state/dashboard.md` blockers + `state/direction.md`)
 
 ### 3. Surface Options (Prioritized)
 
@@ -414,7 +433,14 @@ Include a one-line reason for the top recommendation.
 
 ### 4. Agree on Focus
 
-The user picks what to work on. Confirm the session's focus. If the user brings up a new idea not in current goals, gently note it and suggest `/capture` instead.
+The user picks what to work on. Confirm the session's focus.
+
+**Context-map routing:** Once focus is agreed, read `context-map.yaml`, find the domain that matches
+today's work, and load any `source_files` or `knowledge_files` it points to that haven't been read
+yet. This is the scoped deep-read -- only the context relevant to today, not the whole repo. If no
+`context-map.yaml` exists, or no domain matches, skip this and read the obvious files directly.
+
+If the user brings up a new idea not in current goals, gently note it and suggest `/capture` instead.
 
 ---
 
@@ -423,7 +449,7 @@ The user picks what to work on. Confirm the session's focus. If the user brings 
 - **Weekly review overdue:** "It's Friday (or past Friday) and no weekly review has been logged this week."
 - **Board meeting due:** First Friday of the month (or past it) with no board meeting logged this month. "Board meeting is due. Run `/board-meeting` when ready."
 - **Experiment approaching evaluation:** "The [experiment] hits its minimum runway on [date]."
-- **Stalled project:** "No build log entries mentioning [project] in [N] days."
+- **Stalled project:** From `state/projects.md` -- if a project's `Last touched` is several days old while it's still marked active.
 - **Shiny object detection:** If the user starts talking about a new project not in goals/experiments, don't just flag it -- diagnose it. Ask: "Is the current work feeling predictable, or are you seeing a genuine opportunity?" If stimulation-seeking, suggest reframing current work. If genuine opportunity, suggest `/capture` for board evaluation.
 - **Plan avoidance:** Active plan checkboxes not progressing in build logs.
 - **Plan phase readiness:** If a plan's current phase prerequisites are met, surface the next actions.
@@ -440,6 +466,7 @@ The user picks what to work on. Confirm the session's focus. If the user brings 
 
 Handle missing data gracefully:
 
+- **State files still empty scaffolding:** Use the fallback in Step 1 (read `goals/`, latest board + weekly reviews, last 1-2 build logs). The next `/log` populates the state layer.
 - **No goals:** "You haven't set goals yet. Want to do that now, or wait for your first board meeting?"
 - **No build logs:** Present goals and suggest starting with one.
 - **No experiments:** Skip experiment flags entirely.

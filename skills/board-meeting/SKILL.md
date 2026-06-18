@@ -147,7 +147,15 @@ Once the user and board align:
   - `backlog/IDEAS.md` -- should be empty after triage (all captures reviewed)
   - `backlog/REVIEWED.md` -- add newly parked ideas with trigger conditions, remove any promoted/killed
   - `backlog/ARCHIVE.md` -- add promoted ideas to Promoted section, add killed ideas to Completed / Resolved / Killed section
-- At quarter boundaries: create or update `goals/YYYY-QX.md`
+- At quarter boundaries: create or update `goals/YYYY-QX.md`, and move the closed quarter's `goals/`
+  and `indicators/` files to `archive/` (see `archive/README.md`)
+- **Update `state/dashboard.md` and `state/direction.md`** to reflect any new or adjusted goals,
+  experiments, decisions, or open questions -- following `/log`'s **current-truth rule**: overwrite to
+  what is true now, carry forward open items, **never append a `Prior:` chain**, one `_As of
+  YYYY-MM-DD_` stamp. Resolved questions and superseded decisions drop out -- the board minutes + git
+  are the record.
+- **Quarterly:** review `context-map.yaml` for staleness -- kill dead pointers, add domains for any new
+  projects, fix descriptions that no longer match reality.
 - Log any open items that should carry to the next meeting
 
 ---
