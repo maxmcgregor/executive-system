@@ -1,0 +1,84 @@
+# context-map.yaml
+# Domain-to-resource routing for the executive system.
+# Used by /start and agents to load only relevant context instead of reading every file.
+version: 1
+#
+# Schema:
+#   domains:
+#     <domain-name>:
+#       description: "One-line description"
+#       state_files: [current truth -- load first]
+#       source_files: [deeper context -- load on demand]
+#       knowledge_files: [reusable lessons -- load when relevant]
+#       skills: [skill names]
+#       projects: [directory names in projects/]
+#       related_domains: [other domain names]
+#
+# Design principles:
+#   - Granularity test: "Is this a meaningful unit of work someone would task an agent with?"
+#   - Bidirectional: if A lists B in related_domains, B must list A
+#   - No orphans: every domain has at least one related_domains entry
+#
+# Maintenance:
+#   - When a new project is created, add a per-project domain entry
+#   - When a new knowledge/reference file is created, add it to relevant domains
+#   - When a plan is created or completed, update the relevant domain source_files
+#   - /board-meeting should review this map quarterly for staleness
+#   - /log's custodianship pass may suggest updates when the work reveals a stale pointer
+#
+# The domains below are GENERIC EXAMPLES showing the schema. Replace them with your own:
+# delete what doesn't apply, rename to match your work, and add a per-project domain for
+# each directory under projects/.
+
+domains:
+
+  # ── Strategic domains (most systems will keep these) ──
+
+  quarterly-goals:
+    description: "Current quarter's controllable goals, progress tracking, and guard rails"
+    state_files: [state/dashboard.md, state/direction.md]
+    source_files: [goals/, indicators/]
+    knowledge_files: []
+    skills: [start, weekly-review, board-meeting]
+    projects: []
+    related_domains: [experiments, accountability]
+
+  experiments:
+    description: "Active experiments with hypotheses, runways, and evaluation criteria"
+    state_files: [state/dashboard.md, state/direction.md]
+    source_files: [experiments/]
+    knowledge_files: []
+    skills: [board-meeting, weekly-review]
+    projects: []
+    related_domains: [quarterly-goals, accountability]
+
+  accountability:
+    description: "Weekly reviews, build logs, and pattern detection across time"
+    state_files: [state/dashboard.md]
+    source_files: [reviews/weekly/, logs/build/]
+    knowledge_files: []
+    skills: [weekly-review, log, start]
+    projects: []
+    related_domains: [quarterly-goals, experiments]
+
+  # ── Example operational domain (rename or delete) ──
+
+  content:
+    description: "Example: any sustained output channel — writing, posting, a content flywheel"
+    state_files: [state/dashboard.md]
+    source_files: [experiments/]
+    knowledge_files: []
+    skills: []
+    projects: []
+    related_domains: [experiments, project-x]
+
+  # ── Example per-project domain (add one per directory under projects/) ──
+
+  project-x:
+    description: "Example per-project domain. Copy this block per real project and rename it."
+    state_files: [state/projects.md]
+    source_files: [plans/]
+    knowledge_files: []
+    skills: []
+    projects: [project-x]
+    related_domains: [quarterly-goals, content]
