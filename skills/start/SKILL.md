@@ -56,6 +56,7 @@ After the user runs it, verify the skills installed by checking that `~/.claude/
 #### 2. Directory Verification (silent)
 
 Confirm all repo directories exist. Create any that are missing:
+- `state/`
 - `goals/`
 - `indicators/`
 - `experiments/`
@@ -67,7 +68,12 @@ Confirm all repo directories exist. Create any that are missing:
 - `logs/build/`
 - `logs/journal/`
 - `research/`
+- `archive/`
 - `projects/`
+
+The `state/` files (`dashboard.md`, `projects.md`, `direction.md`) ship with the repo as empty
+scaffolding. Leave them as-is during setup — they get filled with real content the first time
+`/log`, `/weekly-review`, or `/board-meeting` runs after goals exist.
 
 #### 3. Git (silent)
 
