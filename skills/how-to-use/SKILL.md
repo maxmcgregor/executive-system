@@ -49,6 +49,26 @@ The strategic zoom-out. Prevents spending months heading in the wrong direction.
 ### /capture
 The guard rail against shiny object syndrome. When a new idea strikes, capture it and move on. The board evaluates it monthly. This separates the thrill of a new idea from the decision to pursue it.
 
+## How the System Remembers (the state layer)
+
+You never have to manage this, but it's worth understanding why the system stays fast.
+
+There are two kinds of record, kept separate on purpose:
+
+- **The history** -- your build logs (`logs/build/`) plus git. Append-only. It captures everything
+  that ever happened and is never edited.
+- **The current snapshot** -- three small files in `state/` (`dashboard.md`, `projects.md`,
+  `direction.md`) that hold only what's true *right now*.
+
+`/start` reads the snapshot first, which is how it orients you in a couple of minutes instead of
+re-reading weeks of logs. `/log` updates the snapshot at the end of a session by **overwriting** it
+with the current truth -- finished things drop out, open things carry forward. Because it overwrites
+rather than piling on, the snapshot never balloons into stale clutter, and the full history is still
+safe in the build logs and git.
+
+There's also an optional `context-map.yaml` -- a routing index that lets `/start` pull in only the
+files relevant to today's focus, once you've told it what you're working on.
+
 ## Tips
 
 - **Be honest.** The system works by comparing what you said you'd do with what you actually did. If you're not honest in your logs and reviews, the system can't help you.

@@ -61,6 +61,20 @@ Five commands. `/capture` is the only optional one.
 
 `/capture` saves ideas to the backlog anytime. Run `/how-to-use` for the full guide on why each piece matters.
 
+## How It Stays Fast and Honest
+
+The system keeps two kinds of record, and never mixes them:
+
+- **The history** -- your daily build logs (`logs/build/`) and git. Append-only. Nothing is ever lost.
+- **The current snapshot** -- three small files in `state/` that hold only what's true *right now*:
+  your goals and their status, what each project is up to, and your live strategic direction.
+
+`/start` reads the snapshot first, so it knows where things stand in seconds without re-reading
+weeks of logs. `/log` updates the snapshot at the end of each session by **overwriting** it with the
+current truth -- finished items drop out (the history still has them), open items carry forward. That
+overwrite rule is what keeps the snapshot small and trustworthy instead of growing into a pile of
+stale notes. You don't manage any of this; the skills do it for you.
+
 <details>
 <summary>File structure</summary>
 
@@ -72,6 +86,8 @@ executive-system/
 ├── VISION.md              # The life you're building toward
 ├── PROFILE.md             # Your work style, strengths, failure modes
 ├── config.md              # System preferences (auto-commit, etc.)
+├── context-map.yaml       # Domain->resource routing for scoped context loading
+├── state/                 # Current-truth snapshot read at the start of every session
 ├── board/                 # 8 advisor perspectives (customizable)
 ├── goals/                 # Quarterly goals
 ├── indicators/            # Metrics you're watching
@@ -80,9 +96,10 @@ executive-system/
 ├── backlog/               # Captured ideas (triaged monthly)
 ├── reviews/weekly/        # Weekly review outputs
 ├── reviews/board/         # Monthly board meeting outputs
-├── logs/build/            # Daily build logs
+├── logs/build/            # Daily build logs (the append-only history)
 ├── logs/journal/          # Journal entries
 ├── research/              # Your reference material
+├── archive/               # Finished/abandoned docs, out of the hot path
 ├── projects/              # Active project directories
 └── skills/                # Claude Code slash commands
 ```

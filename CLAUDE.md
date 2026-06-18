@@ -67,6 +67,40 @@ An experiment is a **hypothesis about a channel, approach, or method** tested th
 
 ---
 
+## The State Layer (how the system stays fast and honest)
+
+The system keeps two cleanly separated kinds of record:
+
+- **Event stream** -- `logs/build/*.md` + git. Append-only, chronological. The durable record of
+  everything that happened. Write here first, every session.
+- **Current-truth projection** -- `state/dashboard.md`, `state/projects.md`, `state/direction.md`.
+  Small files that hold only what is true *right now*. **Overwritten as reality changes, never appended
+  to.** This is what `/start` reads first each session, so it must stay lean and trustworthy.
+
+The rule baked into every skill that writes state: **if a line describes something that already happened
+and is resolved, it belongs in the build log, not the state files.** When status changes, overwrite it;
+carry forward only the open items; let resolved/historical detail drop out (git and the build log still
+have it). No `Prior:` chains, no running narrative. The history is never lost -- it lives in the event
+stream -- it just doesn't ride along in the hot path.
+
+`/log` writes the build log first, then projects current truth into the state files. `/weekly-review`
+and `/board-meeting` follow the same overwrite rule whenever they touch state.
+
+### context-map.yaml -- scoped context loading
+
+`context-map.yaml` is a domain→resource routing index. Once a session's focus is agreed, `/start`
+finds the matching domain and loads only the files it points to -- relevant context for today's work
+instead of the whole repo. Keep it accurate as projects and plans come and go; `/board-meeting` reviews
+it for staleness quarterly. It is optional -- the system works without it, just less efficiently.
+
+### archive/ -- keeping the hot path clean
+
+Finished or abandoned documents move under `archive/` (mirroring the repo structure) rather than
+cluttering the active directories. State-file *history* is never archived -- that's what the event
+stream is for. See `archive/README.md`.
+
+---
+
 ## Guard Rails
 
 Guard rails are calibrated from `PROFILE.md`. Claude reads the user's failure modes and adapts what it watches for. Two patterns are built into the system by default:
@@ -126,6 +160,10 @@ The full bootstrap logic lives in `skills/start/SKILL.md` -- that is the single 
 | `PROFILE.md` | Skills, strengths, failure modes, communication preferences, current situation |
 | `ONBOARDING.md` | Tracks onboarding progress (unchecked items trigger onboarding mode) |
 | `config.md` | System preferences (auto-commit, etc.) |
+| `state/dashboard.md` | Current-truth projection: quarter, goals, commitments, experiments, focus, blockers |
+| `state/projects.md` | Current-truth projection: per-project status, phase, next action, last-touched |
+| `state/direction.md` | Current-truth projection: goal/experiment status, live decisions, open questions |
+| `context-map.yaml` | Domain→resource routing index for scoped context loading |
 | `goals/YYYY-QX.md` | Current quarter's controllable goals |
 | `indicators/YYYY-QX.md` | Metrics being watched (not controlled) |
 | `experiments/*.md` | Active experiments with status and runway |
@@ -136,9 +174,10 @@ The full bootstrap logic lives in `skills/start/SKILL.md` -- that is the single 
 | `board/*.md` | Board member perspectives (8 default lenses, replaceable with real people) |
 | `reviews/weekly/*.md` | Weekly review outputs |
 | `reviews/board/*.md` | Board meeting outputs |
-| `logs/build/*.md` | Daily build logs |
+| `logs/build/*.md` | Daily build logs (the append-only event stream) |
 | `logs/journal/*.md` | Journal entries |
 | `research/` | Optional: reference material, saved articles, notes |
+| `archive/` | Finished/abandoned docs, mirroring the repo structure (out of the hot path) |
 | `projects/` | Optional: subdirectories for active projects |
 | `skills/` | Claude Code slash commands (/start, /log, /journal, /weekly-review, /board-meeting, /capture, /how-to-use) |
 
@@ -159,6 +198,30 @@ The full bootstrap logic lives in `skills/start/SKILL.md` -- that is the single 
 ## File Schemas
 
 These schemas define the format Claude uses when creating files. Follow them exactly.
+
+### state/*.md (current-truth projection)
+
+The three state files ship as scaffolding and are maintained by `/log`, `/weekly-review`, and
+`/board-meeting`. **Always overwrite to current truth -- never append history or a `Prior:` chain.**
+Each carries a single `_As of YYYY-MM-DD_` stamp.
+
+```markdown
+# Dashboard
+> Current truth only. History lives in logs/build/ + git.
+_As of YYYY-MM-DD_
+
+## Current Quarter: QX YYYY
+| # | Goal | Status |
+|---|------|--------|
+
+## Open commitments
+## Active experiments
+## This stretch
+## Blockers
+```
+
+`state/projects.md`: per project -- status, phase, next action, blockers, `Last touched` (date + one line).
+`state/direction.md`: goal/experiment status, live strategic decisions, open strategic questions.
 
 ### goals/YYYY-QX.md
 
