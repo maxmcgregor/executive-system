@@ -97,7 +97,45 @@ it for staleness quarterly. It is optional -- the system works without it, just 
 
 Finished or abandoned documents move under `archive/` (mirroring the repo structure) rather than
 cluttering the active directories. State-file *history* is never archived -- that's what the event
-stream is for. See `archive/README.md`.
+stream is for. Archive a document only when nothing live still points at it. See `archive/README.md`.
+
+---
+
+## The Initiative Registry (`INITIATIVES.md`)
+
+Goals say what you're committing to this quarter. Plans say how one effort breaks down. Neither
+answers the question you actually ask at the start of a session: **"what's next on X?"**
+
+`INITIATIVES.md` answers it in one read. Every effort is an **initiative** with an ID
+(`<area>-<name>`, e.g. `blog-seo`). Every step inside it is a **story** (`<initiative>.<n>`, e.g.
+`blog-seo.2`). That ID string is the thread -- it appears in the registry row, in the initiative's
+plan doc, and in the build-log line when the story ships, so one grep assembles the whole trail from
+idea to shipped result.
+
+**What's next on an initiative** = the lowest-numbered `todo` story whose depends-on are all `done`.
+Deterministic, not a judgment call.
+
+**Status vocabularies are controlled -- no prose statuses.** Initiative: `active` | `parked` |
+`complete`. Story: `todo` | `doing` | `done` | `blocked`. `done` means finished and out in the world,
+not "written" or "in a branch." Whether the work is *succeeding* is deliberately not a status here:
+the registry answers "is the work done?", and results tracking answers "is it working?" Mixing them
+turns a scannable index into a progress report nobody reads.
+
+**Boundaries -- do not duplicate truth.** The registry owns *work decomposition* (the steps inside an
+effort). `state/projects.md` stays the *asset roster* (per-project health: status, phase, next action,
+last touched). An initiative operates on an asset; they cross-reference, they never restate each
+other. Goals and the backlog are unchanged -- a backlog idea may later be promoted into an initiative
+or a story.
+
+**It is optional, and it is not a day-one file.** With one project running, `state/projects.md` plus a
+plan file is enough. Stand the registry up when two or more efforts are live and you start losing
+track of which one is where. `INITIATIVES.md` ships seeded with one worked example -- replace it.
+
+**Maintenance:** `/log` advances story status, stamps the ship date, and leads the build-log line with
+the story ID (`[blog-seo.2] ...`). `/board-meeting` owns initiative-level status -- it opens,
+activates, parks, and completes initiatives. `/start` and `/weekly-review` read it. The format rules
+that keep it lean (one-line `done` rows, two-sentence open rows) live in the file's own header --
+follow them, or it grows into the thing nobody reads.
 
 ---
 
@@ -164,6 +202,7 @@ The full bootstrap logic lives in `skills/start/SKILL.md` -- that is the single 
 | `state/projects.md` | Current-truth projection: per-project status, phase, next action, last-touched |
 | `state/direction.md` | Current-truth projection: goal/experiment status, live decisions, open questions |
 | `context-map.yaml` | Domain→resource routing index for scoped context loading |
+| `INITIATIVES.md` | Optional: registry of every initiative + the numbered stories inside it ("what's next on X") |
 | `goals/YYYY-QX.md` | Current quarter's controllable goals |
 | `indicators/YYYY-QX.md` | Metrics being watched (not controlled) |
 | `experiments/*.md` | Active experiments with status and runway |
@@ -222,6 +261,25 @@ _As of YYYY-MM-DD_
 
 `state/projects.md`: per project -- status, phase, next action, blockers, `Last touched` (date + one line).
 `state/direction.md`: goal/experiment status, live strategic decisions, open strategic questions.
+
+### INITIATIVES.md (optional; current-truth projection)
+
+Same overwrite rule as the state files. An index table of every initiative, then a story table for
+each `active` one, then a one-line "next on X" pointer per active initiative.
+
+```markdown
+| ID | Initiative | Area | Status | One-liner | Plan doc |
+|----|-----------|------|--------|-----------|----------|
+
+| ID | Story | Status | Depends-on | Artifact | Shipped |
+|----|-------|--------|-----------|----------|---------|
+
+> **Next on <initiative>:** <one line, overwritten each time>
+```
+
+A `done` story row is **exactly one line** -- pointer to the live artifact plus the one doc holding
+detail, and nothing else (no hashes, no test counts). Open rows get at most two sentences: what it is,
+the next action, the gate. See `INITIATIVES.md`'s own header for the full rules.
 
 ### goals/YYYY-QX.md
 

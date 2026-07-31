@@ -154,6 +154,11 @@ Once the user and board align:
   what is true now, carry forward open items, **never append a `Prior:` chain**, one `_As of
   YYYY-MM-DD_` stamp. Resolved questions and superseded decisions drop out -- the board minutes + git
   are the record.
+- **Update `INITIATIVES.md` if it's in use -- this skill owns initiative-level status.** Open a row for
+  any newly-committed effort, and flip `active` / `parked` / `complete` as the direction just set
+  requires. A newly-active initiative gets a story table; one that goes parked or complete loses its
+  table (index row only -- the detail is in its plan doc and git). `/log` handles story status between
+  meetings; you handle the initiative. Same current-truth rule: overwrite, never append.
 - **Quarterly:** review `context-map.yaml` for staleness -- kill dead pointers, add domains for any new
   projects, fix descriptions that no longer match reality.
 - Log any open items that should carry to the next meeting

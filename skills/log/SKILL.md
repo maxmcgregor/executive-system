@@ -67,6 +67,16 @@ Concise. Factual. No narrative.
 
 If appending to existing file, add new bullets under the existing ones.
 
+**If the work belongs to a story in `INITIATIVES.md`, lead the bullet with the story ID:**
+
+```markdown
+- [blog-seo.2] Hub page live; 6 spokes linked back to it
+```
+
+That one prefix is what makes the registry worth keeping. The registry row stays a single line, and
+every hash, test count, decision, and dead end lives here -- so `grep blog-seo` across `logs/build/`
+reconstructs the entire effort months later. Detail belongs in this file, never in the registry row.
+
 ## Journal Pivot
 
 When the user says yes to journaling:
@@ -170,6 +180,11 @@ Check whether the session changed anything in the state layer:
 - `state/dashboard.md` -- did priorities, open commitments, experiments, focus, or blockers change?
 - `state/projects.md` -- did any project's status, phase, next action, blocker, or last-touched change?
 - `state/direction.md` -- did any goal, experiment, decision, or open question change?
+- `INITIATIVES.md` (if in use) -- did a story move? Advance its status (`todo` -> `doing` -> `done`),
+  stamp the `Shipped` date when it ships, and **collapse the row to the one-liner on `done`** (live
+  artifact + the one doc holding detail; no hashes, no test counts -- those are in the build log you
+  just wrote). Overwrite the initiative's "next on X" pointer. Initiative-level status
+  (`active`/`parked`/`complete`) is `/board-meeting`'s call, not this skill's.
 
 Update the state files as a **current-truth projection -- overwrite, do not append:**
 

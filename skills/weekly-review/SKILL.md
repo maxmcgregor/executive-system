@@ -81,6 +81,11 @@ rule: **overwrite to what is true now, carry forward open items, never append hi
 chain.** The weekly review file itself is the historical record; the state files hold only current
 truth.
 
+**Read `INITIATIVES.md` if it's in use.** It answers, per active initiative, what shipped this week
+and what's next -- read it instead of reconstructing progress from plans. This skill *reads* the
+registry; `/log` advances story status and `/board-meeting` sets initiative status. If an initiative
+has had no story move for several weeks while other work continued, that is a stall worth flagging.
+
 ## Empty-State Branches
 
 - **No goals:** Summarize build logs only. Ask: "Want to set goals now or defer to your first board meeting?"

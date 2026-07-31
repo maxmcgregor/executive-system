@@ -391,6 +391,9 @@ files.**
 - `state/dashboard.md` -- quarter + goals, open commitments, active experiments, current focus, blockers
 - `state/projects.md` -- per-project status, phase, next action, blocker, last-touched
 - `state/direction.md` -- goal/experiment status, live decisions, open strategic questions
+- `INITIATIVES.md` (if it exists) -- the initiative registry. The index says what's active across
+  everything; each active initiative's story table says what's next inside it. Skip silently if the
+  file is absent or still holds only the seeded example -- it's optional and not a day-one file.
 
 Then read `PROFILE.md` for chronotype, failure modes, and communication preferences to calibrate the
 session, and check the current date for due reviews (see Conditional Reads below).
@@ -422,6 +425,11 @@ Sourced from the state files, not reconstructed:
 ### 3. Surface Options (Prioritized)
 
 List 2-4 concrete options based on current goals, experiments, and board commitments.
+
+**Next-story input (from `INITIATIVES.md`, when it's in use):** for each `active` initiative, compute
+its next story -- the **lowest-numbered `todo` story whose depends-on are all `done`** -- and surface
+it as a first-class option, e.g. "Next on the blog SEO push: `blog-seo.2`, the hub page." Take this
+straight from the registry; do not reconstruct it from plans and project status.
 
 **Prioritize using the leverage filter:**
 
