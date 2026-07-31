@@ -86,6 +86,31 @@ An experiment is a **hypothesis about a channel, approach, or method** tested th
 
 ---
 
+## Two On-Demand Skills (not cadences)
+
+The three cadences above are scheduled. These two are pulled when wanted, and both are optional.
+
+### /lens -- a perspective that read your files first
+
+A conversation with one named vantage point (business/vision, psychologist, skeptic, future self,
+operator, or one the user names) that **reads the corpus before it speaks** and then arrives with a
+read: specific patterns, with dates, drawn from what's in the repo. Use it when the user wants to be
+seen accurately rather than drawn out.
+
+The distinction from `/journal` matters: `/journal` opens with a question and brings nothing; `/lens`
+opens with a finding and brings evidence. A journal session can become a lens session mid-conversation
+-- announce the switch.
+
+### /dump-review -- periodic cross-corpus synthesis
+
+Reads the whole "dump" at once (research, ideas, journals, past reviews), names the threads that
+persist across months and piles, and mirrors those intentions against what the build logs show
+actually happened. Runs on-demand -- especially at a "what do I do next?" fork -- or roughly every four
+months. Deeper and rarer than the board's monthly idea triage, and it produces a document in
+`reviews/dump/`.
+
+---
+
 ## The State Layer (how the system stays fast and honest)
 
 The system keeps two cleanly separated kinds of record:
@@ -237,12 +262,13 @@ The full bootstrap logic lives in `skills/start/SKILL.md` -- that is the single 
 | `board/*.md` | Board member perspectives (8 default lenses, replaceable with real people) |
 | `reviews/weekly/*.md` | Weekly review outputs |
 | `reviews/board/*.md` | Board meeting outputs |
+| `reviews/dump/*.md` | Dump-review outputs (periodic cross-corpus synthesis) |
 | `logs/build/*.md` | Daily build logs (the append-only event stream) |
 | `logs/journal/*.md` | Journal entries |
 | `research/` | Optional: reference material, saved articles, notes |
 | `archive/` | Finished/abandoned docs, mirroring the repo structure (out of the hot path) |
 | `projects/` | Optional: subdirectories for active projects |
-| `skills/` | Claude Code slash commands (/start, /log, /journal, /weekly-review, /board-meeting, /capture, /how-to-use) |
+| `skills/` | Claude Code slash commands (/start, /log, /journal, /weekly-review, /board-meeting, /capture, /lens, /dump-review, /how-to-use) |
 
 ---
 

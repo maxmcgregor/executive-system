@@ -412,6 +412,10 @@ next `/log` will populate the state layer.
 - **Weekly review due?** If today is Friday (or past Friday with no review this week), read the most recent weekly review from `reviews/weekly/`.
 - **Board meeting due?** If today is the first Friday of the month (or past it with no board meeting logged this month in `reviews/board/`), flag it.
 - **Active plan?** When today's focus maps to an active plan, the context-map routing step (Step 4) loads it.
+- **Dump review due?** If `reviews/dump/` has files, check the newest one's `Next due` line. Once that
+  date has passed, mention `/dump-review` once -- it is a slow, on-demand review, so nudge, never nag.
+  Skip silently if the directory is empty. Also worth surfacing unprompted at any "what do I do next? /
+  I'm at a fork" moment, regardless of the date.
 
 ### 2. Present the Landscape
 
