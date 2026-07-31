@@ -10,8 +10,11 @@ this is the fast map.
 1. `state/dashboard.md` -- compact current state. Start every session here.
 2. `state/projects.md` -- active project status, phases, next actions.
 3. `state/direction.md` -- strategic tracking, live decisions, open questions.
-4. `context-map.yaml` -- find the domain that matches today's work; load only what it points to.
-5. Domain-specific files, only as needed.
+4. `INITIATIVES.md` -- if present and in use: what's active across the whole system, and the next
+   story inside each active initiative. This is the canonical answer to "what's next on X."
+5. `context-map.yaml` -- find the domain that matches today's work; load only what it points to.
+   Check its `last_reviewed` stamp: if it's old, distrust the descriptions and trust `state/`.
+6. Domain-specific files, only as needed.
 
 The `state/` files are a **current-truth projection** -- read them at face value. Do not reconstruct
 status by re-reading build logs; the state layer is kept current for exactly that reason. (If the
@@ -23,12 +26,14 @@ for that session.)
 | Directory | Purpose | Load pattern |
 |-----------|---------|-------------|
 | `state/` | Pre-computed current truth: dashboard, projects, direction | Always first |
+| `INITIATIVES.md` | Optional: initiative + story registry ("what's next on X") | Always first, if in use |
 | `goals/` | Quarterly goals (controllable, measurable) | On-demand |
 | `indicators/` | Metrics being watched (not controlled) | On-demand |
 | `experiments/` | Active experiments with hypotheses and runways | On-demand |
 | `plans/` | Active execution plans with checkboxes | On-demand |
 | `reviews/weekly/` | Weekly accountability reviews | On-demand |
 | `reviews/board/` | Monthly board meeting outputs | On-demand |
+| `reviews/dump/` | Periodic cross-corpus synthesis (`/dump-review`) | On-demand |
 | `logs/build/` | Daily build logs (what was done -- the event stream) | On-demand |
 | `logs/journal/` | Journal entries (reflections) | Rarely |
 | `backlog/` | IDEAS.md (raw), REVIEWED.md (parked), ARCHIVE.md (promoted/killed) | On-demand |
@@ -60,10 +65,14 @@ keeps the hot path small.
 ## Session Closeout Contract
 
 When `/log` runs at the end of a session:
-1. **Write the build log first** -- the append-only record of what happened today.
+1. **Write the build log first** -- the append-only record of what happened today. If the work belongs
+   to a story in `INITIATIVES.md`, lead the bullet with the story ID (`[blog-seo.2] ...`).
 2. **Update state** -- if priorities, blockers, project phases, goals, experiments, or open questions
    changed, overwrite the relevant `state/*` files to current truth (carry forward open items only).
-3. **Capture anything durable** -- a reusable lesson goes to `research/` or a notes file; a new idea
+3. **Advance the registry** -- if a story moved, update its status in `INITIATIVES.md`, stamp the ship
+   date, and collapse the row to one line once it's `done`. Detail belongs in the build log, never in
+   the registry row. Initiative-level status is the board meeting's call, not a session's.
+4. **Capture anything durable** -- a reusable lesson goes to `research/` or a notes file; a new idea
    goes to `backlog/IDEAS.md` via `/capture`.
 
 ## System Boundaries

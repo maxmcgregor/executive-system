@@ -301,23 +301,32 @@ If the user keeps defaults, confirm the 8 files already exist in `board/` and ar
 
 ---
 
-### Step 5: Current Situation & Goals
+### Step 5: Current Work & Goals
 
 **Why (say this to the user):**
 
-> Now that the system knows who you are and where you're going, we need to know where you are right now and what you're aiming for in the near term. Goals should be things within your control -- "write 10 blog posts" not "get 1000 readers." 2-3 per quarter. Deliberately achievable.
+> Now that the system knows who you are and where you're going, we need two more things: what's actually in flight right now, and what you're aiming for in the near term. Goals should be things within your control -- "write 10 blog posts" not "get 1000 readers." 2-3 per quarter. Deliberately achievable.
 
 **What to extract:**
 - Current situation snapshot (update `PROFILE.md` if new information surfaces)
+- **Every project or effort currently in flight** -- this fills `state/projects.md`
 - 2-3 quarterly goals (controllable, measurable)
 - Indicators to watch (not controllable, but informative)
-- Any active experiments or projects
+- Any active experiments
 
 **How to ask:**
 
 Start with situation if not already covered in Step 3:
 
 > "What are you working on right now? What's the biggest thing you're trying to make happen?"
+
+Then inventory the work. **Do not skip this -- it is the step that makes `/start` useful tomorrow:**
+
+> "Let's list everything you've got going right now -- projects, side things, anything half-finished. For each one: what state is it in, and what's the single next thing you'd do on it?"
+
+Get all of them, including the stalled and the embarrassing. A project the user forgot to mention is a
+project `/start` can never surface. If they mention something scrapped or parked, capture that too --
+it goes in the parked section and stops them re-litigating it every month.
 
 Then move to goals:
 
@@ -327,17 +336,24 @@ Then indicators:
 
 > "What numbers or signals would tell you things are working, even though you can't control them directly? Revenue, followers, downloads, responses -- anything you'd want to track."
 
-Then experiments/projects:
+Then experiments:
 
-> "Are you running any experiments or active projects right now? Things you're testing or building?"
+> "Are you running any experiments right now -- something you're testing where you don't know the answer yet?"
 
 **Output:**
+- **Write `state/projects.md`** using the schema in that file: a block per project with status, phase,
+  next action, blockers, and `Last touched`. Replace the placeholder scaffolding entirely. This is the
+  one state file that nothing else in onboarding fills, and until it's real, `/start` has no idea what
+  the user is working on.
 - Write `goals/YYYY-QX.md` using the goals schema from `CLAUDE.md` (determine the current quarter from today's date)
 - Write `indicators/YYYY-QX.md` using the indicators schema from `CLAUDE.md`
 - If experiments are mentioned, create files in `experiments/` using the experiment schema from `CLAUDE.md`
 - Update `PROFILE.md` with any new situational information
+- If the user has **two or more distinct efforts running**, mention `INITIATIVES.md` once: it's the
+  optional registry that answers "what's next on X" per effort. Offer to seed it with their efforts as
+  initiatives. If they'd rather not, leave the example in place -- it can be adopted any time.
 
-**Then:** Check off "Current Situation & Goals" in `ONBOARDING.md`. Ask if they want to continue or stop for now.
+**Then:** Check off "Current Work & Goals" in `ONBOARDING.md`. Ask if they want to continue or stop for now.
 
 ---
 

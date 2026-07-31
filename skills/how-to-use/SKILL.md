@@ -49,6 +49,50 @@ The strategic zoom-out. Prevents spending months heading in the wrong direction.
 ### /capture
 The guard rail against shiny object syndrome. When a new idea strikes, capture it and move on. The board evaluates it monthly. This separates the thrill of a new idea from the decision to pursue it.
 
+## Two Skills for Thinking, Not Tracking
+
+Neither is scheduled. Pull them when the question isn't "am I on track?" but "what am I not seeing?"
+
+### /lens
+A conversation with one perspective that **read your files before it spoke**. You pick the vantage
+point -- skeptic, future self, business, psychologist, an operator you admire, or one you name -- and it
+opens with a read: patterns, with dates, drawn from what's actually in your repo.
+
+The difference from `/journal` is the direction of the work. `/journal` asks you questions and brings
+nothing; `/lens` brings evidence and tells you what it found. Use `/journal` when you need to think out
+loud, `/lens` when you want to be seen accurately. A journal session can turn into a lens session
+mid-conversation -- just ask it to tell you what it sees.
+
+### /dump-review
+For "what do I do next?" moments. It reads everything you've saved, captured, and journaled, clusters
+it by meaning rather than keyword, and ranks themes by how long they've persisted across months and
+piles -- a thing you thought about intensely for one week is noise; a thing that keeps quietly
+reappearing for six months is signal.
+
+Then it does the part that stings: it checks those themes against your build logs. Are you *acting* on
+what you keep thinking about, or just circling it? Run it a few times a year, or any time you're at a
+fork.
+
+## Two Habits Worth Adopting
+
+Optional, both aimed at a specific way this kind of system fails.
+
+### The initiative registry (`INITIATIVES.md`)
+Once two or more efforts are running, `state/projects.md` tells you how each one is *doing* but not
+what step comes *next inside it*. The registry gives each effort an ID (`blog-seo`) and each step a
+number (`blog-seo.2`), and that ID also goes in your build log when the step ships. Two payoffs:
+"what's next on this?" gets one deterministic answer, and `grep blog-seo` reconstructs the entire
+effort a year later. Skip it while you're on one project.
+
+### The blindfold protocol
+For metrics you don't control -- traffic, followers, revenue. Checking them daily reads noise as
+signal, tempts you into changing the thing you're testing mid-experiment (which destroys your ability
+to know what caused what), and hands your mood to a number.
+
+So split collecting from reading. Numbers get collected continuously and silently; you read them once
+a month at the board meeting, against a window you decided on *before* the experiment started. Waiting
+is not passivity -- during a pre-registered window, waiting *is* the execution.
+
 ## How the System Remembers (the state layer)
 
 You never have to manage this, but it's worth understanding why the system stays fast.
@@ -67,7 +111,8 @@ rather than piling on, the snapshot never balloons into stale clutter, and the f
 safe in the build logs and git.
 
 There's also an optional `context-map.yaml` -- a routing index that lets `/start` pull in only the
-files relevant to today's focus, once you've told it what you're working on.
+files relevant to today's focus, once you've told it what you're working on. Your board meeting keeps
+it current and stamps the date it last checked; if that date looks old, trust `state/` over it.
 
 ## Tips
 

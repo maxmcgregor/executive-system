@@ -41,15 +41,21 @@ Claude detects that the system is new and starts an onboarding conversation. Ove
 - **Your values** -- the filters for every decision
 - **Your profile** -- how you work, what drains you, where you tend to fail
 - **Your board** -- 8 perspectives that challenge your thinking (customizable)
+- **Your current work** -- everything in flight, with the next action on each
 - **Your goals** -- 2-3 controllable targets for this quarter
 
 Then you run your first board meeting and you're operational.
+
+Don't skip the current-work step. It's the one that decides whether `/start` is useful tomorrow
+morning -- a project you forgot to mention is a project the system can never surface. List the stalled
+and half-finished ones too.
 
 **Tip:** During onboarding, the system will recommend free personality assessments ([Big Five](https://bigfive-test.com), [Enneagram](https://www.truity.com/test/enneagram-personality-test)). These are optional but make a real difference -- the better your profile, the better the system calibrates feedback, reviews, and pattern detection to how you're actually wired.
 
 ## The Habit Loop
 
-Five commands. `/capture` is the only optional one.
+Five commands carry the whole system. Start with `/start` and `/log` -- if those two stick, everything
+else has data to work with.
 
 | Command | When | Time |
 |---|---|---|
@@ -59,7 +65,28 @@ Five commands. `/capture` is the only optional one.
 | `/weekly-review` | Fridays | 5-10 min |
 | `/board-meeting` | First Friday of each month | 30-60 min |
 
-`/capture` saves ideas to the backlog anytime. Run `/how-to-use` for the full guide on why each piece matters.
+**Pull these when you want them.** None are scheduled:
+
+| Command | What it's for |
+|---|---|
+| `/capture` | An idea arrives. Save it, move on, let the board judge it next month. |
+| `/lens` | You want a straight read. Pick a vantage point -- skeptic, future self, business, or one you name -- and it reads your files *before* it speaks, then opens with what it found: patterns, with dates. |
+| `/dump-review` | You're at a "what do I do next?" fork. It reads everything you've saved and journaled, names the threads that keep recurring across months, and checks them against what your build logs say you actually did. |
+
+Run `/how-to-use` for the full guide on why each piece matters.
+
+## Tracking More Than One Thing
+
+Once you have two or more efforts running, `state/projects.md` tells you *how each one is doing* but
+not *what step comes next inside it*. That's what `INITIATIVES.md` is for.
+
+Each effort becomes an **initiative** with an ID like `blog-seo`, and each step inside it a numbered
+**story** like `blog-seo.2`. The same ID goes in the registry, the plan, and the build log when the
+step ships -- so `grep blog-seo` months later reconstructs the whole effort, and "what's next on this?"
+has one deterministic answer instead of being a judgment call every morning.
+
+It ships with a worked example to replace, and it's genuinely optional -- with one project running, skip
+it.
 
 ## How It Stays Fast and Honest
 
@@ -82,6 +109,7 @@ stale notes. You don't manage any of this; the skills do it for you.
 executive-system/
 ├── CLAUDE.md              # System brain -- how Claude operates this system
 ├── ONBOARDING.md          # Tracks setup progress
+├── INITIATIVES.md         # Optional: what's next inside each effort you have running
 ├── VALUES.md              # Your values and principles
 ├── VISION.md              # The life you're building toward
 ├── PROFILE.md             # Your work style, strengths, failure modes
@@ -96,6 +124,7 @@ executive-system/
 ├── backlog/               # Captured ideas (triaged monthly)
 ├── reviews/weekly/        # Weekly review outputs
 ├── reviews/board/         # Monthly board meeting outputs
+├── reviews/dump/          # Dump-review outputs (periodic cross-corpus synthesis)
 ├── logs/build/            # Daily build logs (the append-only history)
 ├── logs/journal/          # Journal entries
 ├── research/              # Your reference material
