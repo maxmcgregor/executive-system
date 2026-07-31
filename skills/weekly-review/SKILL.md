@@ -86,6 +86,16 @@ and what's next -- read it instead of reconstructing progress from plans. This s
 registry; `/log` advances story status and `/board-meeting` sets initiative status. If an initiative
 has had no story move for several weeks while other work continued, that is a stall worth flagging.
 
+## Blindfold Protocol (if the user has adopted it)
+
+Where an experiment's indicators are under the blindfold (see CLAUDE.md "The Blindfold Protocol"),
+this review **collects but does not display.** Run whatever collector exists, log one line that it
+ran, and show the user nothing -- no numbers, no directional hints, not even "it's trending up."
+
+The monthly board meeting is the only human read. If the user asks for the numbers here, say plainly
+that they're under the blindfold until the board meeting and that the window was pre-registered --
+then let them decide. It's their protocol; you're holding the line they set, not policing them.
+
 ## Empty-State Branches
 
 - **No goals:** Summarize build logs only. Ask: "Want to set goals now or defer to your first board meeting?"

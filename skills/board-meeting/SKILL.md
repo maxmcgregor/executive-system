@@ -159,8 +159,13 @@ Once the user and board align:
   requires. A newly-active initiative gets a story table; one that goes parked or complete loses its
   table (index row only -- the detail is in its plan doc and git). `/log` handles story status between
   meetings; you handle the initiative. Same current-truth rule: overwrite, never append.
-- **Quarterly:** review `context-map.yaml` for staleness -- kill dead pointers, add domains for any new
-  projects, fix descriptions that no longer match reality.
+- **Refresh `context-map.yaml` -- this skill owns it, and nothing else writes it.** Walk the domain
+  descriptions against the direction just set: kill dead pointers, add a domain for a new project,
+  retire one for a killed project, and fix any description that now reads false. Then stamp
+  `last_reviewed`. Do this **every meeting**, not quarterly. The descriptions carry strategy, and
+  strategy moves faster than anyone thinks to edit a routing file -- left alone for a quarter, it will
+  confidently describe an abandoned plan as the current one. Descriptions only: it routes, it never
+  holds truth. `state/` always wins.
 - Log any open items that should carry to the next meeting
 
 ---

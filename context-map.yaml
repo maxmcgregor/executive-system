@@ -2,6 +2,8 @@
 # Domain-to-resource routing for the executive system.
 # Used by /start and agents to load only relevant context instead of reading every file.
 version: 1
+owner: /board-meeting          # the only skill that writes this file; refreshes it every meeting
+last_reviewed: YYYY-MM-DD      # if this date is stale, distrust the descriptions and read state/ instead
 #
 # Schema:
 #   domains:
@@ -23,8 +25,12 @@ version: 1
 #   - When a new project is created, add a per-project domain entry
 #   - When a new knowledge/reference file is created, add it to relevant domains
 #   - When a plan is created or completed, update the relevant domain source_files
-#   - /board-meeting should review this map quarterly for staleness
+#   - /board-meeting OWNS this file and refreshes it EVERY meeting, stamping last_reviewed.
+#     Nothing else writes it, so without that pass it rots silently -- the descriptions carry
+#     strategy, and strategy moves faster than anyone thinks to edit a routing file. Left for a
+#     quarter, this file will confidently describe an abandoned plan as the current one.
 #   - /log's custodianship pass may suggest updates when the work reveals a stale pointer
+#   - state/ always wins over a description here. This file routes; it does not hold truth.
 #
 # The domains below are GENERIC EXAMPLES showing the schema. Replace them with your own:
 # delete what doesn't apply, rename to match your work, and add a per-project domain for

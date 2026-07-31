@@ -30,6 +30,25 @@ Each layer constrains the layer below it. Values filter goals. Goals define whic
 - **Indicators** = what the user watches to see if reality is responding (not controllable). Income, users, followers, traffic. Evaluated monthly at board meetings.
 - **Stored in:** `indicators/YYYY-QX.md`
 
+### The Blindfold Protocol (optional, recommended once an experiment is running)
+
+Indicators are noisy and they lag. Checking them daily does three kinds of damage: it reads noise as
+signal, it tempts you to change the thing you're testing mid-experiment (which destroys your ability
+to attribute the result to anything), and it hands your mood to a number you do not control.
+
+So separate **collection** from **reading**:
+
+- **Collect continuously and silently.** Whatever pulls the numbers -- a script, a manual check --
+  runs on its normal cadence and writes them down. `/weekly-review` may run the collector and log that
+  it ran, but **displays nothing.**
+- **Read on a fixed cadence, at the board meeting only.** One human read per month, against a window
+  that was decided in advance.
+- **Pre-register the window before the experiment starts:** what changed, what the primary metric is,
+  and the date you will read it. Then wait out the window. Waiting counts as executing.
+
+If you break it and peek, say so in the build log. A peek with no change made still preserves
+attribution; a peek that leads to a mid-window tweak does not, and the experiment has to restart.
+
 ---
 
 ## How Experiments Work
@@ -90,8 +109,13 @@ and `/board-meeting` follow the same overwrite rule whenever they touch state.
 
 `context-map.yaml` is a domain→resource routing index. Once a session's focus is agreed, `/start`
 finds the matching domain and loads only the files it points to -- relevant context for today's work
-instead of the whole repo. Keep it accurate as projects and plans come and go; `/board-meeting` reviews
-it for staleness quarterly. It is optional -- the system works without it, just less efficiently.
+instead of the whole repo.
+
+**`/board-meeting` owns it** and refreshes it every meeting, stamping `last_reviewed`. Nothing else
+writes it, so without that pass it rots silently: the descriptions carry strategy, and strategy moves
+faster than anyone thinks to edit a routing file. `/log`'s custodianship pass may *suggest* updates.
+If `last_reviewed` looks old, distrust the descriptions and read `state/` instead -- this file routes,
+it never holds truth. It is optional; the system works without it, just less efficiently.
 
 ### archive/ -- keeping the hot path clean
 
